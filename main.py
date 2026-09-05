@@ -57,7 +57,7 @@ def summarize_expenses(start_date: str, end_date: str, category: str = None):
             query += " AND category = ?"
             params.append(category)
 
-        query += " GROUP BY category ORDDER BY category ASC"
+        query += " GROUP BY category ORDER BY category ASC"
         curr = conn.execute(query, params)
         cols = [d[0] for d in curr.description]
         return [dict(zip(cols, row)) for row in curr.fetchall()]
